@@ -1,19 +1,22 @@
 # tz
 
-## Project setup
+## Установка. Для работы вам необходимо установить Node.js:
+
+https://nodejs.org/ru/download/package-manager/
+
+## Установка. Откройте папку с проектом в терминале и выполните следующую команду:
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Чтобы открыть проект в режиме разработки откройте папку проекта в терминале и выполните команду:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Чтобы собрать проект перед выгрузкой на продакшн  откройте папку проекта в терминале и выполните команду:
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
