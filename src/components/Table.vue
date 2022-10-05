@@ -14,6 +14,7 @@
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <!-- Модальное окно добавления нового элемента смотреть документацию v-dialog -->
+
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
@@ -109,8 +110,8 @@
 </template>
 
 <script>
-// Импорт библиотеки для преобразования ременных форматов
-import moment from "moment";
+// Импорт библиотеки для преобразования временных форматов
+import dayjs from "dayjs";
 // Импорт библиотеки круговой Диаграммы
 import { GChart } from "vue-google-charts/legacy";
 
@@ -174,9 +175,9 @@ export default {
       ],
       // Проверяем поля даты и изменяем формат вывода на более понятный пользователю
       tableData: this.tableData.map((el) => {
-        el.lastOperDt
-          ? (el.lastOperDt = moment(el.lastOperDt).format("DD.MM.YYYY hh:mm"))
-          : (el.lastOperDt = "-");
+        el.lastOperDt = el.lastOperDt
+          ? dayjs(el.lastOperDt).format("DD.MM.YYYY hh:mm")
+          : "-";
       }),
       // Переменная для проверки действия. Если -1 то открывается форма для редактирования элемента, в остальных случаях откроется модалка для создания нового элемента
       editedIndex: -1,
@@ -278,7 +279,7 @@ export default {
             let aDate = +new Date(a.lastOperDt),
               bDate = +new Date(b.lastOperDt);
             return compare(aDate, bDate);
-          } else compare(bDate, aDate);
+          } else return compare(bDate, aDate);
         }
       });
       return items;
